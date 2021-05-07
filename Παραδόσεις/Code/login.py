@@ -15,7 +15,7 @@ cur = conn.cursor()
 # dhmiourgia parathyrou
 root = Tk()
 root.title("Login")
-root.iconbitmap("budget_icon.ico")
+root.iconbitmap("Images/budget_icon.ico")
 root.configure(background="#4a47a3")
 
 # gia to username
