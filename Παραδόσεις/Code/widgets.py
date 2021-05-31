@@ -2,6 +2,10 @@ from tkinter import *
 import mysql.connector
 import matplotlib.pyplot as plt
 import single_sale as ss # periexei thn klash Sale
+import plotly.graph_objects as go
+import plotly
+import plotly.io as pio
+from PIL import Image, ImageDraw, ImageFont
 
 class Widgets(): # h klash einai mono gia pwlhseis afou auto einai to senario sta use cases
 
@@ -31,7 +35,16 @@ class Widgets(): # h klash einai mono gia pwlhseis afou auto einai to senario st
 
                 title += str(self.selected_products[i])
 
-        return title
+        #metatroph titlou se eikona gia th xrhsh tou os widget
+
+        # onoma tou arxeiou gia apothikeush
+        filename = "widget_title.png"
+        fnt = ImageFont.truetype("arial.ttf", 28)
+        #dhmiourgia eikonas
+        image = Image.new(mode = "RGB", size = (600,50), color = "white")
+        draw = ImageDraw.Draw(image)
+        draw.text((10,10), title, font=fnt, fill="black")
+        image.save(filename)
 
 
 
@@ -63,10 +76,10 @@ class Widgets(): # h klash einai mono gia pwlhseis afou auto einai to senario st
 
 
             #filtrarisma pwlhsewn gia na paroume autes pou antistoixoun sto orismeno xroniko diasthma
-            filtered_sales = [] #lista me ta telika proionta
+            self.filtered_sales = [] #lista me ta telika proionta
             for item in sales_list:
                 if (str(item.prod_date) >= self.start_date and str(item.prod_date) <= self.last_date):
-                    filtered_sales.append(item)
+                    self.filtered_sales.append(item)
 
             #lexiko me type, pwlhseis
             chart_data = {}
@@ -74,7 +87,7 @@ class Widgets(): # h klash einai mono gia pwlhseis afou auto einai to senario st
             for item in self.chosen_types:
                 chart_data[str(item)] = 0
             #eisagwgh timwn
-            for item in filtered_sales:
+            for item in self.filtered_sales:
                 chart_data[str(item.prod_type)] += item.prod_amount
 
 
@@ -85,12 +98,52 @@ class Widgets(): # h klash einai mono gia pwlhseis afou auto einai to senario st
             plt.title("Sales Allocation")
 
 
-            plt.savefig('pie.jpg',bbox_inches='tight', dpi=150)
+            plt.savefig('widget_pie.jpg',bbox_inches='tight', dpi=150)
+            plt.close('all')
 
 
 
     def get_table(self):
-        pass
+        # pinakas: name, type , amount, income, purchase
+        names_column = []
+        type_column = []
+        amount_column = []
+        income_column = []
+        purchase_column = []
+        for item in self.filtered_sales:
+            names_column.append(item.prod_name)
+            type_column.append(item.prod_type)
+            amount_column.append(item.prod_amount)
+            income_column.append(item.get_income)
+            purchase_column.append(item.prod_purchase)
+
+
+        summary_tb = go.Figure(data=[go.Table(
+    header=dict(values=["Name", "Type", "Amount", "Income", "Purchase"],
+                line_color='darkslategray',
+                fill_color='lightskyblue',
+                align='left'),
+    cells=dict(values=[names_column, # 1st column
+                       type_column, # 2nd column
+                       amount_column, # 3rd column
+                       income_column, # 4th column
+                       purchase_column], # 5th column
+               line_color='darkslategray',
+               fill_color='lightcyan',
+               align='left'))
+])
+        summary_tb.update_layout(width=500, height=300)
+        # summary_tb.write_image("summary_tb.png")
+        pio.write_image(summary_tb, "summary_tb.png")
 
     def order_list(self):
         pass
+
+
+
+
+
+
+
+
+

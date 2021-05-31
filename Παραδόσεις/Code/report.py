@@ -209,20 +209,21 @@ def openCharts():
     next_button.config(font=("Calibri", 16))
 
 
-    def openCreateReport():
+def openCreateReport():
 
-        #dhmiourgia antikeimenou typou Widgets
-        report_widgets = widgets.Widgets(sales_var, expenses_var, prod_types, variables_list, start_date, last_date, chart_option)
+    #dhmiourgia antikeimenou typou Widgets
+    report_widgets = widgets.Widgets(sales_var, expenses_var, prod_types, variables_list, start_date, last_date, chart_option)
 
-        #report title
-        report_title = report_widgets.get_title()
+    #report title
+    report_widgets.get_title()
 
-        #report chart
-        report_widgets.get_chart()
+    #report chart
+    report_widgets.get_chart()
 
-        #report summary-table
+    #report summary-table
+    report_widgets.get_table()
 
-        #products to be ordered due to demand
+    #products to be ordered due to demand
 
 
 
