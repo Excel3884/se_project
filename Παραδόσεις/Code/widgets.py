@@ -39,7 +39,7 @@ class Widgets(): # h klash einai mono gia pwlhseis afou auto einai to senario st
 
         # onoma tou arxeiou gia apothikeush
         filename = "widget_title.png"
-        fnt = ImageFont.truetype("arial.ttf", 28)
+        fnt = ImageFont.truetype("cambriab.ttf", 28)
         #dhmiourgia eikonas
         image = Image.new(mode = "RGB", size = (600,50), color = "white")
         draw = ImageDraw.Draw(image)
@@ -103,42 +103,57 @@ class Widgets(): # h klash einai mono gia pwlhseis afou auto einai to senario st
 
 
 
-    def get_table(self):
-        # pinakas: name, type , amount, income, purchase
-        names_column = []
-        type_column = []
-        amount_column = []
-        income_column = []
-        purchase_column = []
-        for item in self.filtered_sales:
-            names_column.append(item.prod_name)
-            type_column.append(item.prod_type)
-            amount_column.append(item.prod_amount)
-            income_column.append(item.get_income)
-            purchase_column.append(item.prod_purchase)
+    # def get_table(self):
+    #     # pinakas: name, type , amount, income, purchase
+    #     names_column = []
+    #     type_column = []
+    #     amount_column = []
+    #     income_column = []
+    #     purchase_column = []
+    #     for item in self.filtered_sales:
+    #         names_column.append(item.prod_name)
+    #         type_column.append(item.prod_type)
+    #         amount_column.append(item.prod_amount)
+    #         income_column.append(item.get_income)
+    #         purchase_column.append(item.prod_purchase)
 
 
-        summary_tb = go.Figure(data=[go.Table(
-    header=dict(values=["Name", "Type", "Amount", "Income", "Purchase"],
-                line_color='darkslategray',
-                fill_color='lightskyblue',
-                align='left'),
-    cells=dict(values=[names_column, # 1st column
-                       type_column, # 2nd column
-                       amount_column, # 3rd column
-                       income_column, # 4th column
-                       purchase_column], # 5th column
-               line_color='darkslategray',
-               fill_color='lightcyan',
-               align='left'))
-])
-        summary_tb.update_layout(width=500, height=300)
-        # summary_tb.write_image("summary_tb.png")
-        pio.write_image(summary_tb, "summary_tb.png")
+    #     summary_tb = go.Figure(data=[go.Table(
+    # header=dict(values=["Name", "Type", "Amount", "Income", "Purchase"],
+    #             line_color='darkslategray',
+    #             fill_color='lightskyblue',
+    #             align='left'),
+    # cells=dict(values=[names_column, # 1st column
+    #                    type_column, # 2nd column
+    #                    amount_column, # 3rd column
+    #                    income_column, # 4th column
+    #                    purchase_column], # 5th column
+    #            line_color='darkslategray',
+    #            fill_color='lightcyan',
+    #            align='left'))
+# ])
+    #     summary_tb.update_layout(width=500, height=300)
+    #     # summary_tb.write_image("summary_tb.png")
+    #     pio.write_image(summary_tb, "summary_tb.png")
 
     def order_list(self):
-        pass
+        # taxinomhsh twn sales se fthinousa seira me vash tis pwlhseis
+        # gia na paroume ta proionta me tis perissoteres pwlhseis
+        self.filtered_sales.sort(key=lambda x: x.prod_amount, reverse=True)
+        order_list = "Top 2 selling products to be ordered: \n"
+        order_list += "1. " + str(self.filtered_sales[0].prod_name) + "\n"
+        order_list += "2. " + str(self.filtered_sales[1].prod_name)
 
+        #metatroph order_list se eikona gia th xrhsh tou os widget
+
+        # onoma tou arxeiou gia apothikeush
+        filename = "widget_orders.png"
+        fnt = ImageFont.truetype("arial.ttf", 20)
+        #dhmiourgia eikonas
+        image = Image.new(mode = "RGB", size = (600,200), color = "white")
+        draw = ImageDraw.Draw(image)
+        draw.text((10,10), order_list, font=fnt, fill="black")
+        image.save(filename)
 
 
 

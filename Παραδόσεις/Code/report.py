@@ -1,6 +1,7 @@
 from tkinter import *
 import mysql.connector
 import widgets #klash gia dhmiourgia widgets gia thn anafora
+from PIL import ImageTk,Image
 
 #sundesh sth vash dedomenwn
 conn = mysql.connector.connect(
@@ -221,9 +222,54 @@ def openCreateReport():
     report_widgets.get_chart()
 
     #report summary-table
-    report_widgets.get_table()
+    # report_widgets.get_table()
 
     #products to be ordered due to demand
+    report_widgets.order_list()
+
+    #dhmiourgia parathyrou morfopoihshs anaforas
+    report_format = Toplevel()
+    report_format.title("Format Report")
+    report_format.iconbitmap("Images/budget_icon.ico")
+    report_format.configure(background="white")
+    report_format.geometry("700x790")
+
+
+    #anakthsh eikonwn
+    image_title = ImageTk.PhotoImage(Image.open("widget_title.png"))
+    image_chart = ImageTk.PhotoImage(Image.open("widget_pie.jpg"))
+    image_orders = ImageTk.PhotoImage(Image.open("widget_orders.png"))
+
+    widget_title = Label(report_format, image=image_title)
+    widget_chart = Label(report_format, image=image_chart)
+    widget_orders = Label(report_format, image=image_orders)
+
+    widget_title.grid(row=0, column=0)
+    widget_chart.grid(row=100, column=0)
+    widget_orders.grid(row=200, column=0)
+
+
+    #synarthseis gia th leitourgia drag-n-drop
+    def drag_start(e):
+        widget = e.widget
+        widget.startX = e.x
+        widget.startY = e.y
+
+    def drag_motion(e):
+        widget = e.widget
+        x = widget.winfo_x() - widget.startX + e.x
+        y = widget.winfo_y() - widget.startY + e.y
+        widget.place(x=x,y=y)
+
+
+    #anathesh twn tags se sunarthseis
+    # widget_title.bind("<Button-1>", drag_start)
+    # widget_title.bind("<B1-Motion>", drag_motion)
+    # widget_chart.bind("<Button-1>", drag_start)
+    # widget_chart.bind("<B1-Motion>", drag_motion)
+    # widget_orders.bind("<Button-1>", drag_start)
+    # widget_orders.bind("<B1-Motion>", drag_motion)
+
 
 
 
