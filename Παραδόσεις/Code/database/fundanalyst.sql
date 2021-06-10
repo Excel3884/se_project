@@ -2,8 +2,8 @@
 -- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 03, 2021 at 11:36 AM
+-- Host: localhost
+-- Generation Time: Jun 10, 2021 at 09:33 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -53,7 +53,7 @@ CREATE TABLE `employees` (
   `lastname` varchar(255) NOT NULL,
   `id` int(11) NOT NULL,
   `salary` float NOT NULL,
-  `month` varchar(255) NOT NULL
+  `month` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -61,11 +61,11 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`name`, `lastname`, `id`, `salary`, `month`) VALUES
-('Elias', 'Dimitriou', 1, 1000, ''),
-('Iraklis', 'Ioannidis', 2, 1600, ''),
-('Prokopis', 'Iordanou', 3, 1200, ''),
-('Paraskevi', 'Dimitriou', 4, 1200, ''),
-('Vasilis', 'Papageorgiou', 5, 1800, '');
+('Elias', 'Dimitriou', 1, 1000, '2021-06-02'),
+('Iraklis', 'Ioannidis', 2, 1600, '2021-06-12'),
+('Prokopis', 'Iordanou', 3, 1200, '2021-06-18'),
+('Paraskevi', 'Dimitriou', 4, 1200, '2021-06-24'),
+('Vasilis', 'Papageorgiou', 5, 1800, '2021-06-05');
 
 -- --------------------------------------------------------
 
@@ -86,11 +86,11 @@ CREATE TABLE `operatingcosts` (
 --
 
 INSERT INTO `operatingcosts` (`power`, `water`, `phone`, `rent`, `date`) VALUES
-(143.32, 115.22, 9469450000, 350, '2021-06-14'),
-(69.96, 61.13, 6988210000, 300, '2021-06-18'),
-(93.61, 173.57, 6858840000, 320, '2021-06-10'),
-(161.3, 93.15, 6939720000, 400, '2021-06-24'),
-(134.55, 76.91, 6854770000, 350, '2021-06-12');
+(93.61, 173.57, 74.49, 320, '2021-06-10'),
+(134.55, 76.91, 36.74, 350, '2021-06-12'),
+(143.32, 98.73, 60.15, 350, '2021-06-14'),
+(69.96, 61.13, 51.62, 300, '2021-06-18'),
+(161.3, 93.15, 67.39, 400, '2021-06-24');
 
 -- --------------------------------------------------------
 
@@ -157,6 +157,12 @@ ALTER TABLE `accounts`
 --
 ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `operatingcosts`
+--
+ALTER TABLE `operatingcosts`
+  ADD PRIMARY KEY (`date`);
 
 --
 -- Indexes for table `sales`
