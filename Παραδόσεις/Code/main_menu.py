@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import ImageTk, Image
 import sales
+import Expenses
 
 # dhmiourgia parathyrou
 menu = Tk()
@@ -25,6 +26,11 @@ report_image = PhotoImage(file = r"Images/report.png")
 def openSales():
     sales.SalesWindow()
 
+def openExpenses():
+    Expenses.ExpensesWindow()
+
+
+
 #-----------------------------------koumpia menou------------------------------#
 # gia tis pwlhseis
 sales_button = Button(text="Sales", padx=30, pady=0,
@@ -34,7 +40,7 @@ sales_button.config(font=("Calibri bold", 16))
 
 # gia ta exoda
 expenses_button = Button(text="Expenses", padx=30,
-                         pady=0, fg="#413c69", activeforeground="#413c69", bg="#e14900", activebackground="#e14900", image=expenses_image, compound=TOP)
+                         pady=0, fg="#413c69", activeforeground="#413c69", bg="#e14900", activebackground="#e14900", image=expenses_image, compound=TOP, command=openExpenses)
 expenses_button.grid(row=1, column=2, padx=10, pady=10)
 expenses_button.config(font=("Calibri bold", 16))
 
