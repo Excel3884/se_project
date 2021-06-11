@@ -29,6 +29,9 @@ def openSales():
 def openReport():
     report.ReportWindow()
 
+def openBudget():
+    import miniaios.py
+
 #-----------------------------------koumpia menou------------------------------#
 # gia tis pwlhseis
 sales_button = Button(text="Sales", padx=30, pady=0,
@@ -50,7 +53,7 @@ balance_button.config(font=("Calibri bold", 16))
 
 # gia to mhniaio budget
 monthly_button = Button(text="Monthly Budget", padx=0,
-                        pady=0, fg="#413c69", activeforeground="#413c69", bg="#009bd2", activebackground="#009bd2", image=monthly_image, compound=TOP)
+                        pady=0, fg="#413c69", activeforeground="#413c69", bg="#009bd2", activebackground="#009bd2", image=monthly_image, compound=TOP,command=openBudget)
 monthly_button.grid(row=2, column=1, padx=10, pady=10)
 monthly_button.config(font=("Calibri bold", 16))
 
