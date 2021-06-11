@@ -1,6 +1,7 @@
 from tkinter import *
 from PIL import ImageTk, Image
 import sales
+import report
 
 # dhmiourgia parathyrou
 menu = Tk()
@@ -24,6 +25,9 @@ report_image = PhotoImage(file = r"Images/report.png")
 
 def openSales():
     sales.SalesWindow()
+
+def openReport():
+    report.ReportWindow()
 
 #-----------------------------------koumpia menou------------------------------#
 # gia tis pwlhseis
@@ -52,7 +56,7 @@ monthly_button.config(font=("Calibri bold", 16))
 
 # gia tis anafores
 report_button = Button(text="Report", padx=30, pady=0,
-                       fg="#413c69", activeforeground="#413c69", bg="#ff8a0e", activebackground="#ff8a0e", image=report_image, compound=TOP)
+                       fg="#413c69", activeforeground="#413c69", bg="#ff8a0e", activebackground="#ff8a0e", image=report_image, compound=TOP, command=openReport)
 report_button.grid(row=2, column=3, padx=10, pady=10)
 report_button.config(font=("Calibri bold", 16))
 

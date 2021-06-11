@@ -1,6 +1,7 @@
 from tkinter import *
 import  mysql.connector
 import table
+import single_sale #periexei thn klash Sale
 
 # sundesh sth vash dedomenwn
 conn = mysql.connector.connect(
@@ -24,27 +25,12 @@ def SalesWindow():
 
     #---------lista eggrafwn-----------#
 
-    class Sale():
-
-        def __init__(self, prod_id, prod_name, prod_type, prod_date, prod_price, prod_amount, prod_purchase):
-            self.prod_id = prod_id
-            self.prod_name = prod_name
-            self.prod_type = prod_type
-            self.prod_date = prod_date
-            self.prod_price = prod_price
-            self.prod_amount = prod_amount
-            self.prod_purchase = prod_purchase
-
-
-        def get_income(self):
-            return self.prod_price * self.prod_amount
-
     sales_list = [] # lista me tis pwlhseis ws objects
 
     cur.execute("SELECT * FROM sales")
     rows = cur.fetchall()
     for row in rows:
-        object_row = Sale(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
+        object_row = single_sale.Sale(row[0], row[1], row[2], row[3], row[4], row[5], row[6])
         sales_list.append(object_row)
 
 
