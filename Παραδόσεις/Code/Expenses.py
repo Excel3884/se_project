@@ -154,6 +154,17 @@ def ExpensesWindow():
     #------------dhmiourgia pinaka--------------#
 
     def create_table_Salaries(date_in):
+        def connect_db ():
+            conn=mysql.connector.connect(
+                host="localhost",
+                user="root" ,
+                password="",
+                database="fundanalyst"
+            )
+            return conn;
+        conn = connect_db()
+        cur =conn.cursor()
+
         employees_list = []  # lista me ta eksoda misthwn ypallilwn
 
         cur.execute("SELECT * FROM employees")
@@ -232,7 +243,8 @@ def ExpensesWindow():
         for item in employees_list:
             if (item.getID()==int(id_emp)):
                 item.setSalary(new_salary)
-                cur.execute("UPDATE employees SET salary=%s WHERE id=%s", str(new_salary), str(id_emp))
+                cur.execute("UPDATE employees SET salary=%s WHERE id=%s",(new_salary,id_emp))
+                conn.commit()
         for item in records_list2.cells_list:
             item.destroy()
         filters_button2.destroy()
@@ -250,10 +262,6 @@ def ExpensesWindow():
         create_table_Salaries('')
 
 
-          
-
-
-
 
 
     supplies_list = [] # lista me ta eksoda promitheiwn
@@ -263,6 +271,8 @@ def ExpensesWindow():
     for row in rows:
         object_row = Supply.Supply(row[0], row[1])
         supplies_list.append(object_row)
+
+
 
     #------------dhmiourgia pinaka--------------#
 

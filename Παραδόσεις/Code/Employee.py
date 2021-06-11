@@ -15,7 +15,7 @@ class Employee():
         self.salary=salary
 
     def getID(self):
-        return id
+        return self.id
 
     def getMonth(self):
         return self.month
