@@ -262,7 +262,7 @@ def openCreateReport():
         widget.place(x=x,y=y)
 
 
-    #anathesh twn tags se sunarthseis
+    #anathesh sunarthsewn sta widgets
     # widget_title.bind("<Button-1>", drag_start)
     # widget_title.bind("<B1-Motion>", drag_motion)
     # widget_chart.bind("<Button-1>", drag_start)
