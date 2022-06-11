@@ -1,5 +1,5 @@
 from tkinter import *
-import mysql.connector
+import dbConnection
 import matplotlib.pyplot as plt
 import single_sale as ss # periexei thn klash Sale
 import plotly.graph_objects as go
@@ -55,12 +55,7 @@ class Widgets(): # h klash einai mono gia pwlhseis afou auto einai to senario st
         else:
 
             #sundesh sth vash dedomenwn
-            conn = mysql.connector.connect(
-                host="localhost",
-                user="root",
-                password="",
-                database="fundanalyst"
-            )
+            conn = dbConnection.conn
 
             cur = conn.cursor()
             global sales_list

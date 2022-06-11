@@ -1,14 +1,9 @@
 from tkinter import *
-import mysql.connector
 from tkinter import messagebox
+import dbConnection
 
 # sundesh sth vash dedomenwn
-conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="fundanalyst"
-)
+conn = dbConnection.conn
 
 cur = conn.cursor()
 

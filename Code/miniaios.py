@@ -1,7 +1,7 @@
 from tkinter import messagebox
 import tkinter as tk
 import tkinter.font as tkFont
-import  mysql.connector
+import dbConnection
 import Employee
 import Operating_Cost
 import Supply
@@ -28,12 +28,7 @@ supplies_list = []
 
 
 
-conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="fundanalyst"
-)
+conn = dbConnection.conn
 
 cur = conn.cursor()
 

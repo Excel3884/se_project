@@ -1,7 +1,8 @@
 from tkinter import *
 from PIL import ImageTk, Image
 import sales
-import report
+import help
+import Expenses
 
 # dhmiourgia parathyrou
 menu = Tk()
@@ -20,47 +21,63 @@ expenses_image = PhotoImage(file = r"Images/expenses.png")
 balance_image = PhotoImage(file = r"Images/images.png")
 monthly_image = PhotoImage(file = r"Images/img_7322.png")
 report_image = PhotoImage(file = r"Images/report.png")
+help_image = (Image.open("Images/help.png"))
+resized_help_image = help_image.resize((200,200), Image.ANTIALIAS)  #   Resize the help image
+new_help_image = ImageTk.PhotoImage(resized_help_image)             #   It is too big
 
 #------------leitourgies koumpiwn------------#
 
 def openSales():
     sales.SalesWindow()
 
-def openReport():
-    report.ReportWindow()
+def openExpenses():
+    Expenses.ExpensesWindow()
 
-def openBudget():
-    import miniaios.py
+def openHelp():
+    help.helpWindow()
 
 #-----------------------------------koumpia menou------------------------------#
 # gia tis pwlhseis
 sales_button = Button(text="Sales", padx=30, pady=0,
-                      fg="#413c69", activeforeground="#413c69", bg="#009813", activebackground="#009813", image=sales_image, compound=TOP, command=openSales)
+                      fg="#413c69", activeforeground="#413c69", bg="#009813",
+                      activebackground="#009813", image=sales_image, compound=TOP, command=openSales)
 sales_button.grid(row=1, column=0, padx=10, pady=10)
 sales_button.config(font=("Calibri bold", 16))
 
 # gia ta exoda
 expenses_button = Button(text="Expenses", padx=30,
-                         pady=0, fg="#413c69", activeforeground="#413c69", bg="#e14900", activebackground="#e14900", image=expenses_image, compound=TOP)
+                         pady=0, fg="#413c69", activeforeground="#413c69", bg="#e14900",
+                         activebackground="#e14900", image=expenses_image, compound=TOP, command=openExpenses)
 expenses_button.grid(row=1, column=2, padx=10, pady=10)
 expenses_button.config(font=("Calibri bold", 16))
 
 # gia to ypoloipo
 balance_button = Button(text="Balance", padx=0, pady=0,
-                        fg="#413c69", activeforeground="#413c69", bg="#e1fa40", activebackground="#e1fa40", image=balance_image, compound=TOP)
+                        fg="#413c69", activeforeground="#413c69", bg="#e1fa40",
+                        activebackground="#e1fa40", image=balance_image, compound=TOP)
 balance_button.grid(row=1, column=4, padx=10, pady=10)
 balance_button.config(font=("Calibri bold", 16))
 
 # gia to mhniaio budget
 monthly_button = Button(text="Monthly Budget", padx=0,
-                        pady=0, fg="#413c69", activeforeground="#413c69", bg="#009bd2", activebackground="#009bd2", image=monthly_image, compound=TOP,command=openBudget)
+                        pady=0, fg="#413c69", activeforeground="#413c69", bg="#009bd2",
+                        activebackground="#009bd2", image=monthly_image, compound=TOP)
 monthly_button.grid(row=2, column=1, padx=10, pady=10)
 monthly_button.config(font=("Calibri bold", 16))
 
 # gia tis anafores
 report_button = Button(text="Report", padx=30, pady=0,
-                       fg="#413c69", activeforeground="#413c69", bg="#ff8a0e", activebackground="#ff8a0e", image=report_image, compound=TOP, command=openReport)
+                       fg="#413c69", activeforeground="#413c69", bg="#ff8a0e",
+                       activebackground="#ff8a0e", image=report_image, compound=TOP)
 report_button.grid(row=2, column=3, padx=10, pady=10)
 report_button.config(font=("Calibri bold", 16))
+
+
+# gia to help
+help_button = Button(text="Report", padx=30, pady=0,
+                       fg="#413c69", activeforeground="#413c69", bg="#ff8a0e",
+                       activebackground="#ff8a0e", image=new_help_image, compound=TOP, command=openHelp)
+help_button.grid(row=2, column=3, padx=10, pady=10)
+help_button.config(font=("Calibri bold", 16))
 
 mainloop()

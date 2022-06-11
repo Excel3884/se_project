@@ -1,15 +1,10 @@
 from tkinter import *
-import mysql.connector
+import dbConnection
 import widgets #klash gia dhmiourgia widgets gia thn anafora
 from PIL import ImageTk,Image
 
 #sundesh sth vash dedomenwn
-conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="fundanalyst"
-)
+conn = dbConnection.conn
 
 cur = conn.cursor()
 
