@@ -105,7 +105,7 @@ def onClick():
 def onClickDel():
     delete_input = delete.get()
 
-    cur.execute("DELETE FROM account WHERE id=?", delete_input)
+    cur.execute("DELETE FROM account WHERE username=?", delete_input)
     conn.commit()
     row = cur.fetchone()
 
