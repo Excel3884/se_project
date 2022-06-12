@@ -15,7 +15,7 @@ cur = conn.cursor()
 
 # dhmiourgia parathyrou
 root = Tk()
-root.title("Login")
+root.title("Account Manager")
 root.iconbitmap("Images/budget_icon.ico")
 root.configure(background="#4a47a3")
 root.geometry("800x850")
